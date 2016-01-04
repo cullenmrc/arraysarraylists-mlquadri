@@ -19,6 +19,16 @@ public class RadarViewer
         final int COLS = 100;
         Radar radar = new Radar(ROWS, COLS);
         radar.setNoiseFraction(0.10);
+        
+        // prompt the user to optionally enter the location of the monster
+        //  (if they don't, leave the location randomly determined)
+        
+        
+        //
+        // !!! add code here !!!
+        //
+        
+        
         radar.scan();
         
         JFrame frame = new JFrame();

@@ -110,6 +110,19 @@ public class Radar
     {
         return currentScan[row][col];
     }
+
+    /**
+     * Returns a Location object containing the row and column of the detected monster based on analyzing the
+     *  accumulator (not based on the monsterLocationRow and monsterLocationCol instance variables).
+     * 
+     * @return the location of the detected monster
+     */
+    public Location findMonster()
+    {
+        //
+        // !!! add code here !!!
+        //
+    }
     
     /**
      * Returns the number of times that the specified location in the radar grid has triggered a
@@ -161,10 +174,11 @@ public class Radar
      */
     private void injectNoise()
     {
-        // Iterate through all cells in the currentScan 2D array to inject noise by setting false positives.
+        // Iterate through all cells in the currentScan 2D array to inject noise by setting false positives
+        // (detected monster where is there none) or false negatives (missed detection of a monster where is one).
         // The noiseFraction instance variable is the probability that a given cell will be
-        // detected as a false positive. Use the Math.random method to determine if each cell should be set
-        // as a false positive.
+        // detected as a false positive or false negative. Use the Math.random method to determine if each cell
+        // should be set as a false positive or negative.
         
         
         //
