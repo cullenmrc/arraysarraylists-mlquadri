@@ -40,8 +40,8 @@ public class RadarComponent extends JComponent
     public Dimension getPreferredSize()
     {
         // the component needs to be large enough to encapsulate two grids side by side
-        final int WIDTH = radar.getNumCols() * CELL_WIDTH_IN_PIXELS * 2;
-        final int HEIGHT = radar.getNumRows() * CELL_HEIGHT_IN_PIXELS;
+        final int WIDTH = this.radar.getNumCols() * CELL_WIDTH_IN_PIXELS * 2;
+        final int HEIGHT = this.radar.getNumRows() * CELL_HEIGHT_IN_PIXELS;
         return new Dimension(WIDTH, HEIGHT);
     }
     
@@ -63,8 +63,8 @@ public class RadarComponent extends JComponent
         final Color UNDETECTED_COLOR = new Color(6, 63, 3);
         
         // draw the image for the current scan of the radar
-        int rows = radar.getNumRows();
-        int cols = radar.getNumCols();
+        int rows = this.radar.getNumRows();
+        int cols = this.radar.getNumCols();
         
         for(int row = 0; row < rows; row++)
         {
@@ -75,7 +75,7 @@ public class RadarComponent extends JComponent
                 
                 Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH_IN_PIXELS , CELL_HEIGHT_IN_PIXELS );
                 
-                if(radar.isDetected(row, col))
+                if(this.radar.isDetected(new Location(row, col)))
                 {
                     g2.setColor(DETECTED_COLOR);
                 }
@@ -101,7 +101,8 @@ public class RadarComponent extends JComponent
                 
                 Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH_IN_PIXELS , CELL_HEIGHT_IN_PIXELS );
                 
-                float pixelValue = (float)(radar.getAccumulatedDetection(row, col)) / radar.getNumScans();
+                float pixelValue = (float)(this.radar.getAccumulatedDetection(new Location(row, col))) /
+                        this.radar.getNumScans();
 
                 // due to floating-point rounding issues, pixelValue can end up slightly greater than 1.0
                 //  we'll cap it since the Color constructor requires values <= 1.0
