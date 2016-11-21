@@ -82,4 +82,23 @@ public class Notes
             System.out.println((i+1)+": "+cal[i]);
         }
     }
+    public static void enhanceforloop()
+    {
+        /*
+         * enhance for loop
+         * iterates over teh values in a array
+         * like for i in ...
+         */
+        int[] array = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+        for(int value: array)
+        {
+            System.out.println(value);
+        }
+        /*
+         * remember
+         *      local varabe contains a copy of the value of the element
+         *          cant change the element
+         *      you cant find the index
+         */
+    }
 }
