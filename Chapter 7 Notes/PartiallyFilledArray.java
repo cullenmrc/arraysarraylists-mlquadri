@@ -19,9 +19,9 @@ public class PartiallyFilledArray
     {
         this( DEFULT_CAPACITY );
     }
-
+
     /**
-     * Default constructor for objects of class PartiallyFilledArray
+     * constructor for objects of class PartiallyFilledArray
      */
     public PartiallyFilledArray(int initialCurrentSize)
     {
@@ -29,46 +29,45 @@ public class PartiallyFilledArray
         this.currentSize=0;
     }
 
-    /**
-     *
-     */
     public void add(int value)
     {
-        if(this.currentSize=this.values.length)
+        if(this.currentSize==this.values.length)
         {
             this.grow();
         }
-        this.values[currentSize]=values;
+        this.values[currentSize]=value;
         this.currentSize+=1;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *  that describes the operation of the method
-     *
-     * @pre     preconditions for the method
-     *          (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *          (what the method guarantees upon completion)
-     * @param   y   description of parameter y
-     * @return  description of the return value
-     */
     public void grow()
     {
-        double[] newValues= new double[(this.values.lenght)*2];
-        for(int i=0; i<this.values.lenght; i++)
+        double[] newValues= new double[(this.values.length)*2];
+        for(int i=0; i<this.values.length; i++)
         {
             newValues[i]=this.values[i];
         }
         this.values=newValues;
     }
-    
+    
     public void remove(int index)
     {
-        for(int i=index; i<this.values.lenght-1; i++)
+        for(int i=index; i<this.values.length-1; i++)
         {
             this.values[i]=this.values[i+1];
         }
     }
-
+
+    public void insert(int index, int value)
+    {
+        if(this.currentSize==this.values.length)
+        {
+            this.grow();
+        }
+        for(int i=this.currentSize-1; i>=index; i--)
+        {
+            this.values[i+1]=this.values[i];
+        }
+        this.values[index]=value;
+        this.currentSize+=1;
+    }
 }
