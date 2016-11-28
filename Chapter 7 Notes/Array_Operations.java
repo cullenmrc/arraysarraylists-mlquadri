@@ -14,8 +14,7 @@ a) Create an array x of doubles with an initializer list that contains the follo
 b) Print the number of items in the array by printing the expression x.length.
 c) Print the first array item, x[0].
 d) Print the last array item. Be careful to choose the right index.
-
-e) Print the expression . Why is this value the same as in part d?
+            e) Print the expression . Why is this value the same as in part d?
 f) Use a standard for loop to print all the values in the array without labels. 
 g) Use a standard for loop to print all the values in the array with labels to indicate 
    what each element is.
@@ -40,7 +39,7 @@ public class Array_Operations
         
     }
 
-    public void print()
+    public void printWithIndex()
     {
         int index=0;
         for(double value:x)
@@ -50,7 +49,45 @@ public class Array_Operations
         }
     }
     
-    public void printlast()
+    public void print()
+    {
+        for(double value:x)
+        {
+            System.out.println(value);
+        }
+    }
+    
+    public void printWithIndexStanderd()
+    {
+        for(int i=0; i<x.length; i++)
+        {
+            System.out.println(i+": "+x[i]);
+        }
+    }
+    
+    public void printStanderd()
+    {
+        for(int i=0; i<x.length; i++)
+        {
+            System.out.println(x[i]);
+        }
+    }
+    
+    public void printReverse()
+    {
+        for(int i=x.length-1; i>0; i--)
+        {
+            System.out.println(i+": "+x[i]);
+        }
+    }
+    
+    public void printFirst()
+    {
+        int index=0;
+        System.out.println(index+": "+x[index]);
+    }
+    
+    public void printLast()
     {
         int index=x.length-1;
         System.out.println(index+": "+x[index]);
@@ -58,6 +95,6 @@ public class Array_Operations
     
     public void printexpresion()
     {
-        System.out.println(x[x.length–1]);
+        System.out.println(x.length-1);
     }
 }
