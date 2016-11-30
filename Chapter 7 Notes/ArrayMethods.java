@@ -45,7 +45,10 @@ public class ArrayMethods
     }
     public void b()
     { 
-        
+        for(int i=; i;i--
+        )
+        {
+        }
     }
     public void c()
     { 
