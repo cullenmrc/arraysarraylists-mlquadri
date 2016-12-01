@@ -1,23 +1,21 @@
 
 
 /**
- * Write a description of class Chomp here.
+ * Write a description of class ArrayLists here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Chomp
+public class ArrayLists
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+    
 
     /**
-     * Default constructor for objects of class Chomp
+     * Default constructor for objects of class ArrayLists
      */
-    public Chomp()
+    public ArrayLists()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
 
     /**
@@ -33,8 +31,7 @@ public class Chomp
      */
     public int sampleMethod(int y)
     {
-        // put your code here
-        return x+y;
+        
     }
 
 }
