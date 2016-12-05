@@ -4,11 +4,19 @@ public class CharMatrix
 {
     // Instance variables:
     private char[][] grid;
+    final char SPACE=' ';
     // Constructor: creates a grid with dimensions rows, cols,
     // and fills it with spaces
     public CharMatrix(int rows, int cols)
     {
         this.grid = new char[rows][cols];
+        for (int i = 0; i < grid.length; i++)
+        {
+            for (int x = 0; x < grid[i].length; x++)
+            {
+                grid[i][x]=SPACE;
+            }
+        }
     }
 
     // Constructor: creates a grid with dimensions rows , cols ,
@@ -16,26 +24,25 @@ public class CharMatrix
     public CharMatrix(int rows, int cols, char fill)
     {
         this.grid = new char[rows][cols];
-        for (int i = 0; i < rows; i++)
+        for (int i = 0; i < grid.length; i++)
         {
-            grid[0][i]=fill;
-        }
-        for (int i = 0; i < cols; i++)
-        {
-            grid[1][i]=fill;
+            for (int x = 0; x < grid[i].length; x++)
+            {
+                grid[i][x]=fill;
+            }
         }
     }
 
     // Returns the number of rows in grid
     public int numRows()
     {
-        return grid[0].length;
+        return grid.length;
     }
 
     // Returns the number of columns in grid
     public int numCols()
     {
-        return grid[1].length;
+        return grid[0].length;
     }
 
     // Returns the character at row, col location
@@ -54,7 +61,7 @@ public class CharMatrix
     // false otherwise
     public boolean isEmpty(int row, int col)
     {
-        if ( (grid[row][col]=='\u0000' ))
+        if ( (grid[row][col]==SPACE ))
         {
             return true;
         }
@@ -67,26 +74,41 @@ public class CharMatrix
     // Fills the given rectangle with fill  characters.
     // row0, col0 is the upper left corner and row1, col1 is the
     // lower right corner of the rectangle.
-    public void fillRect(int row0, int col0, int row1, int col1, char fill)
+    public void fillRect(int rstart, int cstart, int rfin, int cfin, char fill)
     {
-
+        for (int i = rstart; i <= rfin; i++)
+        {
+            for (int x = cstart; x <= cfin; x++)
+            {
+                grid[i][x]=fill;
+            }
+        }
     }
 
     // Fills the given rectangle with SPACE characters.
     // row0, col0 is the upper left corner and row1, col1 is the
     // lower right corner of the rectangle.
-    public void clearRect(int row0, int col0, int row1, int col1)
+    public void clearRect(int rstart, int cstart, int rfin, int cfin)
     {
-
+        for (int i = rstart; i <= rfin; i++)
+        {
+            for (int x = cstart; x <= cfin; x++)
+            {
+                grid[i][x]=SPACE;
+            }
+        }
     }
 
     // Returns the count of all non-space characters in row 
     public int countInRow(int row)
     {
         int count = 0;
-        for(int i=0; i<= ;i++)
+        for(int i=0; i< (grid[row].length);i++)
         {
-            if (grid[0][row]
+            if (grid[row][i]!= SPACE)
+            {
+                count+=1;
+            }
         }
         return count;
     }
@@ -95,6 +117,13 @@ public class CharMatrix
     public int countInCol(int col)
     {
         int count = 0;
+        for(int i=0; i< (grid.length);i++)
+        {
+            if (grid[i][col]!= SPACE)
+            {
+                count+=1;
+            }
+        }
         return count;
     }
 }
