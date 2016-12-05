@@ -1,5 +1,4 @@
-
-
+import java.util.ArrayList;
 /**
  * Write a description of class ArrayLists here.
  * 
@@ -8,30 +7,17 @@
  */
 public class ArrayLists
 {
-    
-
-    /**
-     * Default constructor for objects of class ArrayLists
-     */
-    public ArrayLists()
+    public static void main(String[] args)
     {
-        
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        fillList(list, 20,10);
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+    public static void fillList(ArrayList<Integer> list, int numValues, int range)
     {
-        
+        for(int i=0; i<numValues; i++)
+        {
+            list.add((int)(Math.random()*range));
+            
+        }
     }
-
 }
