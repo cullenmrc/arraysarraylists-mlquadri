@@ -40,13 +40,22 @@ Alice B. Toklas was removed from names, but not from names2.
  */
 public class ArrayListOperations 
 {
+    public static ArrayList<String> names = new ArrayList<String>();
     public static void main(String[] args)
     {
-        ArrayList<String> names = new ArrayList<String>();
         System.out.println(names);
+        a();
+        b();
+        c();
+        d();
+        e();
+        f();
+        g();
+        h();
+        i();
     }
-    
-    public void a(ArrayList<String> names)
+    
+    public static void a()
     {
         names.add("Alice");
         names.add("Bob");
@@ -59,44 +68,69 @@ public class ArrayListOperations
         System.out.println(names);
     }
 
-    public void b(ArrayList<String> names)
+    public static void b()
     {
         names.get(0);
         names.get(names.size());
     }
     
-    public void c(ArrayList<String> names)
+    public static void c()
     {
          System.out.println(names.size());
     }
     
-    public void d(ArrayList<String> names)
+    public static void d()
     {
-        
+        System.out.println(names.get(names.size()));
     }
     
-    public void e(ArrayList<String> names)
+    public static void e()
     {
-        
+        for(int i=0;i<=names.size(); i++)
+        {
+            if(names.get(i)=="Alice")
+            {
+                names.remove(i);
+                names.set(i,"Alice B. Toklas");
+                System.out.println(names);
+                break;
+            }
+        }
     }
     
-    public void f(ArrayList<String> names)
+    public static void f()
     {
-        
+        for(int i=0;i<=names.size(); i++)
+        {
+            if(names.get(i)=="David")
+            {
+                names.add(i,"Doug");
+                System.out.println(names);
+                break;
+            }
+        }
     }
     
-    public void g(ArrayList<String> names)
+    public static void g()
     {
-        
+        int count=0;
+        for(String value:names)
+        {
+            System.out.println(count+": "+value);
+        }
     }
     
-    public void h(ArrayList<String> names)
+    public static void h()
     {
-        
+        ArrayList<String> names2 = new ArrayList<String>(names);
+        System.out.println(names);
     }
     
-    public void i(ArrayList<String> names)
+    public static void i()
     {
-        
+        ArrayList<String> names2 = new ArrayList<String>(names);
+        names.remove(0);
+        System.out.println(names);
+        System.out.println(names2);
     }
 }
