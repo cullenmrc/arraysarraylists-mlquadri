@@ -70,8 +70,7 @@ public class ArrayListOperations
 
     public static void b()
     {
-        names.get(0);
-        names.get(names.size());
+        System.out.println("First Name: "+(names.get(0))+"Last Name: "+(names.get(names.size()-1)));
     }
     
     public static void c()
@@ -81,14 +80,14 @@ public class ArrayListOperations
     
     public static void d()
     {
-        System.out.println(names.get(names.size()));
+        System.out.println((names.size()-1)+": "+names.get(names.size()-1));
     }
     
     public static void e()
     {
         for(int i=0;i<=names.size(); i++)
         {
-            if(names.get(i)=="Alice")
+            if(names.get(i).equals("Alice"))
             {
                 names.remove(i);
                 names.set(i,"Alice B. Toklas");
@@ -102,7 +101,7 @@ public class ArrayListOperations
     {
         for(int i=0;i<=names.size(); i++)
         {
-            if(names.get(i)=="David")
+            if(names.get(i).equals("David"))
             {
                 names.add(i,"Doug");
                 System.out.println(names);
@@ -123,7 +122,7 @@ public class ArrayListOperations
     public static void h()
     {
         ArrayList<String> names2 = new ArrayList<String>(names);
-        System.out.println(names);
+        System.out.println(names2);
     }
     
     public static void i()

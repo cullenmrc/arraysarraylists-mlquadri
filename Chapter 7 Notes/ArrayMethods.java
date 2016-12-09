@@ -1,5 +1,3 @@
-
-
 /**
 Write array methods that carry out the following tasks for an array of integers by
 completing the ArrayMethods class below. For each method, provide a test program.
