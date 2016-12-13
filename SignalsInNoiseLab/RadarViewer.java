@@ -1,5 +1,5 @@
 import javax.swing.JFrame;
-
+import java.uti.Scanner;
 /**
  * Class that contains the main method for the program and creates the frame containing the component.
  * 
@@ -27,7 +27,35 @@ public class RadarViewer
         //
         // !!! add code here !!!
         //
-        
+        Scanner s = new (System.in);
+        boolean run=true;
+        int mx=0
+        int my=0
+        while(run==true)
+        {
+            System.out.print("Do you want to choose the monsters position(Y/N): ")
+            yn=s.nextInt();
+            System.out.println("")
+            if(yn.equles("Y"))
+            {
+                System.out.print("Input X: ")
+                mx=s.nextInt();
+                System.out.println("")
+                System.out.print("Input Y: ")
+                my=s.nexyInt();
+                System.out.println("")
+                run=false;
+            }else if(yn.equles("N")){
+                mx=
+                my=
+                Radar.setMonsterLocation(Location loc);
+                run=false;
+            }else{
+                System.out.println("ERROR: That's not a valid answer")
+                System.out.println("Please only put a capital N or Y")
+                run=true;
+            }
+        }
         
         radar.scan();
         
