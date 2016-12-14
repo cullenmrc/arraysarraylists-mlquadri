@@ -1,4 +1,3 @@
-
 /**
  * The model for radar scan and accumulator
  * 
@@ -35,9 +34,8 @@ public class Radar
         // initialize the currentScan 2D array and the accumulator 2D array
         
         
-        //
-        // !!! add code here !!!
-        //
+        currentScan=new boolean[rows][cols];
+        accumulator=new int[rows][cols];
         
         
         // randomly set the location of the monster (can be explicity set through the
@@ -62,13 +60,37 @@ public class Radar
         //    3. inject noise into the grid
         //    4. update the accumulator 2D array based on the state of the currentScan 2D array
         //    5. increment the numScans instance variable
-        
-        
-        //
-        // !!! add code here !!!
-        //
-        
-        
+        for(int i=0; i<currentScan.length;i++)
+        {
+            for(int x=0; x<currentScan[i].length;x++)
+            {
+                currentScan[i][x]=false;
+            }
+        }
+        int mx=monsterLocation.getRow();
+        int my=monsterLocation.getCol();
+        currentScan[mx][my]=true;
+        for(int i=0; i<currentScan.length;i++)
+        {
+            for(int x=0; x<currentScan[i].length;x++)
+            {
+                if(Math.random()>0.5)
+                {
+                    currentScan[i][x]=true;
+                }
+            }
+        }
+        for(int i=0; i<accumulator.length;i++)
+        {
+            for(int x=0; x<accumulator[i].length;x++)
+            {
+                if(currentScan[i][x]==true)
+                {
+                    accumulator[i][x]+=1;
+                }
+            }
+        }
+        numScans+=1;
     }
 
     /**
@@ -118,9 +140,17 @@ public class Radar
      */
     public Location findMonster()
     {
-        //
-        // !!! add code here !!!
-        //
+        for(int x=0; x<accumulator.length;x++)
+        {
+            for(int y=0; y<accumulator[x].length;y++)
+            {
+                if(accumulator[x][y]==numScans)
+                {
+                    Location Monster = new Location(x,y);
+                    return Monster;
+                }
+            }
+        }
     }
     
     /**
