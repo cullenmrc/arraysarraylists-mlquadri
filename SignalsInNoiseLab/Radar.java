@@ -16,7 +16,7 @@ public class Radar
     
     // location of the monster
     private Location monsterLocation;
-
+    private boolean isMonsterFound = false;
     // probability that a cell will trigger a false detection (must be >= 0 and < 1)
     private double noiseFraction;
     
@@ -55,11 +55,11 @@ public class Radar
     public void scan()
     {
         // algorithm for performing a scan:
-        //    1. set all cells in the currentScan 2D array to false
-        //    2. set the location of the monster in the currentScan 2D array
-        //    3. inject noise into the grid
-        //    4. update the accumulator 2D array based on the state of the currentScan 2D array
-        //    5. increment the numScans instance variable
+        //    1. set all cells in the currentScan 2D array to false DONE
+        //    2. set the location of the monster in the currentScan 2D array DONE
+        //    3. inject noise into the grid DONE
+        //    4. update the accumulator 2D array based on the state of the currentScan 2D array DONE
+        //    5. increment the numScans instance variable DONE
         for(int i=0; i<currentScan.length;i++)
         {
             for(int x=0; x<currentScan[i].length;x++)
@@ -140,17 +140,26 @@ public class Radar
      */
     public Location findMonster()
     {
+        Location Monster = new Location(1,1);
         for(int x=0; x<accumulator.length;x++)
         {
             for(int y=0; y<accumulator[x].length;y++)
             {
                 if(accumulator[x][y]==numScans)
                 {
-                    Location Monster = new Location(x,y);
-                    return Monster;
+                    if(isMonsterFound==false)
+                    {
+                        Monster = new Location(x,y);
+                        isMonsterFound=true;
+                    }else{
+                        x=0;
+                        y=-1;
+                        scan();
+                    }
                 }
             }
         }
+        return Monster;
     }
     
     /**
