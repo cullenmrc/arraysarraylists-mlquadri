@@ -23,32 +23,31 @@ public class RadarViewer
         // prompt the user to optionally enter the location of the monster
         //  (if they don't, leave the location randomly determined)
         
-        
-        //
-        // !!! add code here !!!
-        //
         Scanner s = new Scanner(System.in);
         boolean run=true;
         int mx=0;
         int my=0;
+        String yn;
+        Location loc;
         while(run==true)
         {
             System.out.print("Do you want to choose the monsters position(Y/N): ");
-            yn=s.nextInt();
+            yn=s.next();
             System.out.println("");
-            if(yn.equles("Y"))
+            if(yn.equals("Y"))
             {
                 System.out.print("Input X: ");
                 mx=s.nextInt();
                 System.out.println("");
                 System.out.print("Input Y: ");
-                my=s.nexyInt();
+                my=s.nextInt();
                 System.out.println("");
                 run=false;
-            }else if(yn.equles("N")){
-                mx=(int)((Math.random)*100);
-                my=(int)((Math.random)*100);
-                Radar.setMonsterLocation(mx, my);
+            }else if(yn.equals("N")){
+                mx=(int)((Math.random())*100);
+                my=(int)((Math.random())*100);
+                Location loca = new Location(mx, my);
+                Radar.setMonsterLocation(loca);
                 run=false;
             }else{
                 System.out.println("ERROR: That's not a valid answer");

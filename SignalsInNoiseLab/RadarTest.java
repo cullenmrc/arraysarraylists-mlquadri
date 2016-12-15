@@ -49,11 +49,9 @@ public class RadarTest
     public void testRadar()
     {
         // test that the Radar class successfully finds the location of the monster after several scans
-        
-        
-        //
-        // !!! add code here !!!
-        //
+        // test that the Radar class successfully finds the location of the monster after several scans
+        Radar test = new Radar(7,5);
+        test.setMonsterLocation(Location loc);
         
         
     }

@@ -1,12 +1,11 @@
 /**
  * The model for radar scan and accumulator
  * 
- * @author @gcschmit
+ * @author @gcschmit and @mlquadri
  * @version 19 July 2014
  */
 public class Radar
 {
-    
     // stores whether each cell triggered detection for the current scan of the radar
     // (true represents a detected monster, which may be a false positive)
     private boolean[][] currentScan;
@@ -16,7 +15,9 @@ public class Radar
     
     // location of the monster
     private Location monsterLocation;
+    
     private boolean isMonsterFound = false;
+    
     // probability that a cell will trigger a false detection (must be >= 0 and < 1)
     private double noiseFraction;
     
@@ -33,10 +34,8 @@ public class Radar
     {
         // initialize the currentScan 2D array and the accumulator 2D array
         
-        
         currentScan=new boolean[rows][cols];
         accumulator=new int[rows][cols];
-        
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method for the unit test
@@ -67,19 +66,8 @@ public class Radar
                 currentScan[i][x]=false;
             }
         }
-        int mx=monsterLocation.getRow();
-        int my=monsterLocation.getCol();
-        currentScan[mx][my]=true;
-        for(int i=0; i<currentScan.length;i++)
-        {
-            for(int x=0; x<currentScan[i].length;x++)
-            {
-                if(Math.random()>0.5)
-                {
-                    currentScan[i][x]=true;
-                }
-            }
-        }
+        currentScan[monsterLocation.getRow()][monsterLocation.getCol()]=true;
+        injectNoise();
         for(int i=0; i<accumulator.length;i++)
         {
             for(int x=0; x<accumulator[i].length;x++)
@@ -104,7 +92,6 @@ public class Radar
     {
         // remember the monster's location
         this.monsterLocation = loc;
-        
         // update the radar grid to show that something was detected at the specified location
         currentScan[ this.monsterLocation.getRow() ][ this.monsterLocation.getCol() ] = true;
     }
@@ -140,7 +127,7 @@ public class Radar
      */
     public Location findMonster()
     {
-        Location Monster = new Location(1,1);
+        Location Monster = null;
         for(int x=0; x<accumulator.length;x++)
         {
             for(int y=0; y<accumulator[x].length;y++)
@@ -212,19 +199,16 @@ public class Radar
      */
     private void injectNoise()
     {
-        // Iterate through all cells in the currentScan 2D array to inject noise by setting false positives
-        // (detected monster where is there none) or false negatives (missed detection of a monster where is one).
-        // The noiseFraction instance variable is the probability that a given cell will be
-        // detected as a false positive or false negative. You must handle the cell containing the monster as a
-        // special case since, if noise is being injected into that cell, that is a false negative and the cell must
-        // be set to false.
-        
-        
-        //
-        // !!! add code here !!!
-        //
-        
-        
+        //noiseFraction;
+        for(int i=0; i<currentScan.length;i++)
+        {
+            for(int x=0; x<currentScan[i].length;x++)
+            {
+                if(Math.random()>0.5)
+                {
+                    currentScan[i][x]=true;
+                }
+            }
+        }
     }
-    
 }
