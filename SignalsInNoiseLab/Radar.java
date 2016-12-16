@@ -14,23 +14,22 @@ public class Radar
     private int[][] accumulator;
     
     // location of the monster
-    private Location monsterLocation;
+    private Location[] monsterLocation;
     
-    private boolean isMonsterFound = false;
+    private int monstersFound = 0;
     
     // probability that a cell will trigger a false detection (must be >= 0 and < 1)
     private double noiseFraction;
     
     // number of scans of the radar since construction
     private int numScans;
-
     /**
      * Constructor for objects of class Radar
      * 
      * @param   rows    the number of rows in the radar grid
      * @param   cols    the number of columns in the radar grid
      */
-    public Radar(int rows, int cols)
+    public Radar(int rows, int cols, int numMonsters)
     {
         // initialize the currentScan 2D array and the accumulator 2D array
         
@@ -39,10 +38,14 @@ public class Radar
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method for the unit test
-        int row = (int)(Math.random() * rows);
-        int col = (int)(Math.random() * cols);
-        this.monsterLocation = new Location( row, col );
-        
+        int row;
+        int col;
+        for(int i=0; i>monsterLocation.length; i++)
+        {
+            row = (int)(Math.random() * rows);
+            col = (int)(Math.random() * cols);
+            monsterLocation[i] = new Location( row, col );
+        }
         this.noiseFraction = 0.05;
         this.numScans= 0;
     }
@@ -66,7 +69,10 @@ public class Radar
                 currentScan[i][x]=false;
             }
         }
-        currentScan[monsterLocation.getRow()][monsterLocation.getCol()]=true;
+        for(int i=0; i>monsterLocation.length; i++)
+        {
+            currentScan[monsterLocation[i].getRow()][monsterLocation[i].getCol()]=true;
+        }
         injectNoise();
         for(int i=0; i<accumulator.length;i++)
         {
@@ -88,12 +94,12 @@ public class Radar
      * @param   col     the column in which the monster is located
      * @pre row and col must be within the bounds of the radar grid
      */
-    public void setMonsterLocation(Location loc)
+    public void setMonsterLocation(Location loc, int index)
     {
         // remember the monster's location
-        this.monsterLocation = loc;
+        this.monsterLocation[index] = loc;
         // update the radar grid to show that something was detected at the specified location
-        currentScan[ this.monsterLocation.getRow() ][ this.monsterLocation.getCol() ] = true;
+        currentScan[ this.monsterLocation[index].getRow() ][ this.monsterLocation[index].getCol() ] = true;
     }
     
      /**
@@ -125,19 +131,19 @@ public class Radar
      * 
      * @return the location of the detected monster
      */
-    public Location findMonster()
+    public Location[] findMonster()
     {
-        Location Monster = null;
+        Location[] Monster=new Location[monsterLocation.length];
         for(int x=0; x<accumulator.length;x++)
         {
             for(int y=0; y<accumulator[x].length;y++)
             {
                 if(accumulator[x][y]==numScans)
                 {
-                    if(isMonsterFound==false)
+                    if(monstersFound==monsterLocation.length)
                     {
-                        Monster = new Location(x,y);
-                        isMonsterFound=true;
+                        Monster[monstersFound] = new Location(x,y);
+                        monstersFound++;
                     }else{
                         x=0;
                         y=-1;
@@ -199,12 +205,11 @@ public class Radar
      */
     private void injectNoise()
     {
-        //noiseFraction;
         for(int i=0; i<currentScan.length;i++)
         {
             for(int x=0; x<currentScan[i].length;x++)
             {
-                if(Math.random()>0.5)
+                if(Math.random()<=noiseFraction)
                 {
                     currentScan[i][x]=true;
                 }
