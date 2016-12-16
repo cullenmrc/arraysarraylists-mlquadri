@@ -37,7 +37,7 @@ public class RadarViewer
             System.out.println("");
             if(yn.equals("Y"))
             {
-                for(int i=0; i>mx.length; i++)
+                for(int i=0; i<mx.length; i++)
                 {
                     System.out.print("Input X"+i+": ");
                     mx[i]=s.nextInt();
@@ -48,7 +48,7 @@ public class RadarViewer
                     run=false;
                 }
             }else if(yn.equals("N")){
-                for(int i=0; i>mx.length; i++)
+                for(int i=0; i<mx.length; i++)
                 {
                     mx[i]=(int)((Math.random())*100);
                     my[i]=(int)((Math.random())*100);
@@ -59,7 +59,6 @@ public class RadarViewer
             }else{
                 System.out.println("ERROR: That's not a valid answer");
                 System.out.println("Please only put a capital N or Y");
-                run=true;
             }
         }
 
@@ -92,5 +91,4 @@ public class RadarViewer
             frame.repaint();
         }
     }
-
 }

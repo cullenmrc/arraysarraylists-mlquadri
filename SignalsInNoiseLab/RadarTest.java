@@ -47,52 +47,58 @@ public class RadarTest
     {
         // test that the Radar class successfully finds the location of the monster after several scans
         // test that the Radar class successfully finds the location of the monster after several scans
-        Radar radar = new Radar(100,100);
+        Radar radar = new Radar(50, 50, 2);
         Scanner s = new Scanner(System.in);
-        Location monster= new Location(0,0);
-        Location guess;
+        boolean run=false;
         String yn;
-        int mx=0;
-        int my=0;
-        boolean run=true;
+        Location[] monster = new Location[2];
         
-        while(run==true)
-        {
-            System.out.print("Do you want to choose the monsters position(Y/N): ");
-            yn=s.next();
-            System.out.println("");
-            if(yn.equals("Y"))
-            {
-                System.out.print("Input X: ");
-                mx=s.nextInt();
-                System.out.println("");
-                System.out.print("Input Y: ");
-                my=s.nextInt();
-                System.out.println("");
-                run=false;
-            }else if(yn.equals("N")){
-                mx=(int)((Math.random())*100);
-                my=(int)((Math.random())*100);
-                monster= new Location(mx, my);
-                radar.setMonsterLocation(monster);
-                run=false;
-            }else{
-                System.out.println("ERROR: That's not a valid answer");
-                System.out.println("Please only put a capital N or Y");
-                run=true;
-            }
-        }
-        
-        for(int i=0 ; i>100; i++)
+        monster[0] = new Location(3, 1);
+        radar.setMonsterLocation(monster[0], 0);
+        monster[1] = new Location(1, 3);
+        radar.setMonsterLocation(monster[1], 1);
+        for(int i=0; i<100; i++)
         {
             radar.scan();
         }
-        
-        if( (radar.findMonster()) == (monster) )
+        for(int i=0 ; i<100; i++)
+        {
+            if(radar.findMonster() == monster)
+            {
+                run=true;
+            }
+        }
+        if( run==true )
         {
             System.out.println("The Program Works");
+            run=false;
         }else{
-            System.out.println("The De Program Works");
+            System.out.println("The Doesnt Program Works");
+            run=false;
+        }
+        
+        monster[0] = new Location(2, 2);
+        radar.setMonsterLocation(monster[0], 0);
+        monster[1] = new Location(4, 4);
+        radar.setMonsterLocation(monster[1], 1);
+        for(int i=0; i<100; i++)
+        {
+            radar.scan();
+        }
+        for(int i=0 ; i<100; i++)
+        {
+            if(radar.findMonster() == monster)
+            {
+                run=true;
+            }
+        }
+        if( run==true )
+        {
+            System.out.println("The Program Works");
+            run=false;
+        }else{
+            System.out.println("The Doesnt Program Works");
+            run=false;
         }
     }
 }
